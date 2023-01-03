@@ -10,6 +10,14 @@ const pageTemplate = require('./src/page-template');
 var employeeMembers = [];
 var employeeIds= [];
 
+addManager()
+
+function buildTeam() {
+    if (!path.basename('./lib')) {
+
+    }
+}
+
 function addIntern() {
     inquirer.prompt([
         {
@@ -32,5 +40,89 @@ function addIntern() {
             message: 'What school did the intern go to?',
             name: 'school',
         },
-    ]).then(data => employeeMembers.append(new Intern(data.name, data.id, data.email, data.school)))
+    ])
+    .then(data => {
+        employeeMembers.push(new Intern(data.name, data.id, data.email, data.school));
+        employeeIds.push(data.id)
+        })
+    .then(createTeam())
+}
+
+function addEngineer() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'What is the name of the engineer?',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'What is the id of the engineer?',
+            name: 'id',
+        },
+        {
+            type: 'input',
+            message: 'What is the email of the engineer?',
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: 'What is the github link of the engineer?',
+            name: 'github',
+        },
+    ])
+    .then(data => {
+        employeeMembers.push(new Engineer(data.name, data.id, data.email, data.github));
+        employeeIds.push(data.id)
+        })
+    .then(createTeam())
+}
+
+function addManager() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'What is the name of the manager?',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'What is the id of the manager?',
+            name: 'id',
+        },
+        {
+            type: 'input',
+            message: 'What is the email of the manager?',
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: 'What is the office number of the manager?',
+            name: 'office',
+        },
+    ])
+    .then(data => {
+        employeeMembers.push(new Manager(data.name, data.id, data.email, data.office));
+        employeeIds.push(data.id)
+        })
+    .then(createTeam())
+}
+
+function createTeam() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'Which would you like to add?',
+            choices: ['Intern', 'Engineer', 'Finished adding'],
+            name: 'option',
+        }
+    ]).then(data => {
+        if (data.option === 'Intern') {
+            addIntern()
+        } else if (data.options === 'Engineer') {
+            addEngineer() 
+        } else {
+            buildTeam()
+        }
+    })
 }
