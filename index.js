@@ -1,6 +1,5 @@
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
-const Employee = require('./lib/employee');
 const Intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const path = require('path');
@@ -12,10 +11,8 @@ var employeeIds= [];
 
 addManager()
 
-function buildTeam() {
-    if (!path.basename('./lib')) {
-
-    }
+function buildTeam(data) {
+    fs.writeFile(`./dist/index.html`, createTeamHtml(data), (err) => console.log(err))
 }
 
 function addIntern() {
@@ -26,7 +23,7 @@ function addIntern() {
             name: 'name',
         },
         {
-            type: 'input',
+            type: 'number',
             message: 'What is the id of the intern?',
             name: 'id',
         },
@@ -56,7 +53,7 @@ function addEngineer() {
             name: 'name',
         },
         {
-            type: 'input',
+            type: 'number',
             message: 'What is the id of the engineer?',
             name: 'id',
         },
@@ -86,7 +83,7 @@ function addManager() {
             name: 'name',
         },
         {
-            type: 'input',
+            type: 'number',
             message: 'What is the id of the manager?',
             name: 'id',
         },
@@ -96,7 +93,7 @@ function addManager() {
             name: 'email',
         },
         {
-            type: 'input',
+            type: 'number',
             message: 'What is the office number of the manager?',
             name: 'office',
         },
@@ -122,7 +119,7 @@ function createTeam() {
         } else if (data.options === 'Engineer') {
             addEngineer() 
         } else {
-            buildTeam()
+            buildTeam(employeeMembers)
         }
     })
 }
