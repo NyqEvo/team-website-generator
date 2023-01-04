@@ -8,11 +8,14 @@ const pageTemplate = require('./src/page-template');
 
 var employeeMembers = [];
 var employeeIds= [];
+const dirDirectory = path.resolve(__dirname, 'dist');
+const dirPath = path.join(dirDirectory, 'index.html');
 
 addManager()
 
+
 function buildTeam(data) {
-    fs.writeFile(`./dist/index.html`, createTeamHtml(data), (err) => console.log(err))
+    fs.writeFile(dirPath, pageTemplate(data), (err) => console.log(err))
 }
 
 function addIntern() {
@@ -101,6 +104,7 @@ function addManager() {
     .then(data => {
         employeeMembers.push(new Manager(data.name, data.id, data.email, data.office));
         employeeIds.push(data.id)
+        console.log(`Manager ${data.name} successfully added!`)
         })
     .then(createTeam())
 }
