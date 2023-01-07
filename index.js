@@ -11,12 +11,12 @@ var employeeIds= [];
 const dirDirectory = path.resolve(__dirname, 'dist');
 const dirPath = path.join(dirDirectory, 'index.html');
 
-addManager()
-
 
 function buildTeam(data) {
     fs.writeFile(dirPath, pageTemplate(data), (err) => console.log(err))
 }
+
+addManager()
 
 function addIntern() {
     inquirer.prompt([
