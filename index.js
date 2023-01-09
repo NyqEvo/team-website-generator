@@ -45,7 +45,7 @@ function addIntern() {
         employeeMembers.push(new Intern(data.name, data.id, data.email, data.school));
         employeeIds.push(data.id)
         })
-    .then(createTeam())
+    .then(data => createTeam())
 }
 
 function addEngineer() {
@@ -75,7 +75,7 @@ function addEngineer() {
         employeeMembers.push(new Engineer(data.name, data.id, data.email, data.github));
         employeeIds.push(data.id)
         })
-    .then(createTeam())
+    .then(data => createTeam())
 }
 
 function addManager() {
@@ -106,7 +106,7 @@ function addManager() {
         employeeIds.push(data.id)
         console.log(`Manager ${data.name} successfully added!`)
         })
-    .then(createTeam())
+    .then(data => createTeam())
 }
 
 function createTeam() {
@@ -120,7 +120,7 @@ function createTeam() {
     ]).then(data => {
         if (data.option === 'Intern') {
             addIntern()
-        } else if (data.options === 'Engineer') {
+        } else if (data.option === 'Engineer') {
             addEngineer() 
         } else {
             buildTeam(employeeMembers)

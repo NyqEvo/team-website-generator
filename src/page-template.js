@@ -52,19 +52,21 @@ module.exports = team => {
         } else if (item.getRole() === 'Engineer') {
             let engineerArray = []
             engineerArray.push(item)
-            let finalArray = engineerArray.map(createEngineerHtml(item))
+            let finalArray = engineerArray.map( item => createEngineerHtml(item))
             html.push(finalArray.join('\n'))
         } else {
             let internArray = []
             internArray.push(item)
-            let finalArray = internArray.map(createInternHtml(item))
+            let finalArray = internArray.map(item => createInternHtml(item))
             html.push(finalArray.join('\n'))
         }
     })
 
-    return html.push(`<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    html.push(`<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     </body>
-    </html>`).join('')
+    </html>`)
+    html.join(``)
+    return html
 }

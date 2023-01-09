@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    font-size: medium;
+    background-color: bisque;
+}
+
+.manager {
+    display: flex;
+    width: 100%;
+    background-color: grey;
+}
+
+.engineer, .intern {
+    display: flex;
+    width: 50%;
+    background-color: grey;
+}
