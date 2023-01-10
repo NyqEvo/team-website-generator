@@ -10,11 +10,11 @@ describe('Engineer', () => {
     it('should retrieve the github info of the engineer properly using the .getGithub method', () => {
         let testGithub = 'github.com/testuser'
         let testEngineer = new Engineer('John', 7, 'some@email.com', testGithub)
-        expect(testEngineer.getGithub === testGithub).toBe(true)
+        expect(testEngineer.getGithub() === testGithub).toBe(true)
     });
 
     it('should retireve the role of the engineer properly', () => {
         let testEngineer = new Engineer('John', 7, 'some@email.com', 'github.com/testuser')
-        expect(testEngineer.getRole === 'Engineer').toBe(true)
+        expect(testEngineer.getRole() === 'Engineer').toBe(true)
     });
 });

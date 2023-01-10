@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,12 +16,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.5.2"
+  },
   "bugs": {
     "url": "https://github.com/NyqEvo/team-website-generator/issues"
   },
   "homepage": "https://github.com/NyqEvo/team-website-generator#readme",
   "dependencies": {
-    "inquirer": "^8.2.4",
-    "jest": "^29.3.1"
+    "inquirer": "^8.2.4"
   }
 }

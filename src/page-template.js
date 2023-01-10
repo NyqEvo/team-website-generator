@@ -17,7 +17,7 @@ module.exports = team => {
         <h2>${manager.getName()}</h2>
         <p> Role: ${manager.getRole()}</p>
         <p> ID: ${manager.getId()}</p>
-        <p> Email: <a href='${manager.getEmail()}>${manager.getEmail()}</a></p>
+        <p> Email: <a href='${manager.getEmail()}'>${manager.getEmail()}</a></p>
         <p> Office Number: ${manager.getOffice()}</p>
         </div>`
     }
@@ -27,8 +27,8 @@ module.exports = team => {
         <h2>${engineer.getName()}</h2>
         <p> Role: ${engineer.getRole()}</p>
         <p> ID: ${engineer.getId()}</p>
-        <p> Email: <a href='${engineer.getEmail()}>${engineer.getEmail()}</a></p>
-        <p> Github: <a href='${engineer.getGithub()}</a>${engineer.getGithub()}</p>
+        <p> Email: <a href='${engineer.getEmail()}'>${engineer.getEmail()}</a></p>
+        <p> Github: <a href='${engineer.getGithub()}'>${engineer.getGithub()}</a></p>
         </div>`
     }
 
@@ -37,36 +37,38 @@ module.exports = team => {
         <h2>${intern.getName()}</h2>
         <p> Role: ${intern.getRole()}</p>
         <p> ID: ${intern.getId()}</p>
-        <p> Email: <a href='${intern.getEmail()}>${intern.getEmail()}</a></p>
+        <p> Email: <a href='${intern.getEmail()}'>${intern.getEmail()}</a></p>
         <p> School: ${intern.getSchool()}</p>
         </div>`
     
     }
     
-    const html = []
+    let html = ''
 
     team.forEach(item => {
         if (item.getRole() === 'Manager') {
             let managerObject = item
-            html.push(createManagerHtml(managerObject))
+            html+=createManagerHtml(managerObject)
         } else if (item.getRole() === 'Engineer') {
-            let engineerArray = []
-            engineerArray.push(item)
-            let finalArray = engineerArray.map( item => createEngineerHtml(item))
-            html.push(finalArray.join('\n'))
+            html+=createEngineerHtml(item)
+            // let engineerArray = []
+            // engineerArray.push(item)
+            // let finalArray = engineerArray.map( item => createEngineerHtml(item))
+            // html.push(finalArray.join('\n'))
         } else {
-            let internArray = []
-            internArray.push(item)
-            let finalArray = internArray.map(item => createInternHtml(item))
-            html.push(finalArray.join('\n'))
+            html+= createInternHtml(item)
+            // let internArray = []
+            // internArray.push(item)
+            // let finalArray = internArray.map(item => createInternHtml(item))
+            // html.push(finalArray.join('\n'))
         }
     })
 
-    html.push(`<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    html+=`<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     </body>
-    </html>`)
-    html.join(``)
+    </html>`
+
     return html
 }

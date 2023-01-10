@@ -10,11 +10,11 @@ describe('Manager', () => {
     it('should retrieve the office number of the manager properly using the .getOffice method', () => {
         let testNumber = 777
         let testManager = new Manager('John', 7, 'some@email.com', testNumber)
-        expect(testManager.getOffice === testNumber).toBe(true)
+        expect(testManager.getOffice() === testNumber).toBe(true)
     });
 
     it('should retireve the role of the Manager properly', () => {
-        let testIntern = new Intern('John', 7, 'some@email.com', 777)
-        expect(testIntern.getRole === 'manager').toBe(true)
+        let testManager = new Manager('John', 7, 'some@email.com', 777)
+        expect(testManager.getRole() === 'Manager').toBe(true)
     });
 });
